@@ -1,9 +1,10 @@
 package com.github.boot.tomcat;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
- * TODO
+ * This builder is just another way to create a {@link RemoteAddrFilter}.
  * @author Stefan Lotties
  */
 public class RemoteAddrFilterBuilder {
@@ -17,14 +18,24 @@ public class RemoteAddrFilterBuilder {
         return new RemoteAddrFilterBuilder();
     }
 
+    /**
+     * Creates a {@link RemoteAddrFilter}.
+     * @return never null
+     */
     public RemoteAddrFilter create() {
         return this.filter;
     }
 
+    /**
+     * @see {@link RemoteAddrFilter#setUsingRequestRemoteAddr(boolean)}
+     */
     public void usingRequestRemoteAddr(boolean v) {
         filter.setUsingRequestRemoteAddr(v);
     }
 
+    /**
+     * @see {@link RemoteAddrFilter#setClientIpHeaderNames(List)}
+     */
     public void clientIpHeaders(String... headers) {
         if (headers == null) {
             filter.setClientIpHeaderNames(null);

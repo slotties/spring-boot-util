@@ -57,10 +57,24 @@ public class RemoteAddrFilter extends RequestFilter {
         return log;
     }
 
+    /**
+     * Sets the header names to try when looking for a client IP. The first header
+     * having a value wins.
+     * In case no header was found the client IP is taken from the {@link ServletRequest#getRemoteAddr()}.
+     * This fallback will just work when you {@link #setUsingRequestRemoteAddr(boolean) enabled it}.
+     *
+     * @param clientIpHeaderNames either a list of header names or <code>null</code>
+     */
     public void setClientIpHeaderNames(List<String> clientIpHeaderNames) {
         this.clientIpHeaderNames = clientIpHeaderNames;
     }
 
+    /**
+     * Defines whether the {@link ServletRequest#getRemoteAddr()} should be used or not when
+     * no {@link #setClientIpHeaderNames(List) header} contained a client IP.
+     *
+     * @param usingRequestRemoteAddr if {@link ServletRequest#getRemoteAddr()} should be used as fallback
+     */
     public void setUsingRequestRemoteAddr(boolean usingRequestRemoteAddr) {
         this.usingRequestRemoteAddr = usingRequestRemoteAddr;
     }
